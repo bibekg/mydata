@@ -1,0 +1,38 @@
+{
+  "name": "mydata",
+  "version": "1.0.0",
+  "description": "Personal data hub - sync data from various services into a local SQLite database",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mydata": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "mcp": "node dist/mcp-server.js"
+  },
+  "keywords": [
+    "personal-data",
+    "sqlite",
+    "lunchmoney",
+    "strava",
+    "mcp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "better-sqlite3": "^11.6.0",
+    "commander": "^12.1.0",
+    "dotenv": "^17.2.3",
+    "open": "^10.1.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.19.3",
+    "typescript": "^5.7.2"
+  }
+}
