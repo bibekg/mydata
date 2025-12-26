@@ -50,6 +50,7 @@ program
           console.log("\nNo integrations configured. Set environment variables:");
           console.log("  LUNCHMONEY_API_KEY - for Lunch Money");
           console.log("  STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_ACCESS_TOKEN - for Strava");
+          console.log("  HEVY_CSV_PATH - for Hevy (path to workouts.csv file)");
           process.exit(1);
         }
 

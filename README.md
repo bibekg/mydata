@@ -25,6 +25,9 @@ export LUNCHMONEY_API_KEY=your_api_key
 # Strava - Create an app at https://www.strava.com/settings/api
 export STRAVA_CLIENT_ID=your_client_id
 export STRAVA_CLIENT_SECRET=your_client_secret
+
+# Hevy
+export HEVY_API_KEY=
 ```
 
 ### 3. Authenticate with OAuth services

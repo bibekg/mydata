@@ -1,0 +1,9 @@
+Features that could be cool
+* Make it easy to import data and then run some sort pipeline thing
+    - i.e, i have this csv of location data, run another script that reverse geolcoates coordinates
+* A custom MCP client web interface thing that like let's you explore the data, similar to datasette.io
+* a gallery of diff python scripts that tell u requirements of difference connectors and gives u interesting insights
+
+
+Adding connectors
+* this is too much vibe coding, APIs are strucuted, data is strucutred, we shuold be able to automatically build API -> DB pipeline without relying on vibe coding a connector
