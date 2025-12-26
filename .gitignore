@@ -5,6 +5,7 @@ node_modules/
 dist/
 
 # Data files
+raw_data/
 data/
 *.db
 
