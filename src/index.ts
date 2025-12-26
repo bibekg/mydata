@@ -12,7 +12,7 @@ import {
 
 // Import integrations to register them
 import "./integrations/index.js";
-import { stravaIntegration } from "./integrations/index.js";
+import { stravaIntegration, googleCalendarIntegration } from "./integrations/index.js";
 
 const program = new Command();
 
@@ -24,7 +24,9 @@ program
 // Sync command
 program
   .command("sync [integration]")
-  .description("Sync data from services. If no integration specified, syncs all configured integrations.")
+  .description(
+    "Sync data from services. If no integration specified, syncs all configured integrations.",
+  )
   .action(async (integrationName?: string) => {
     const db = createDatabase();
 
@@ -51,6 +53,9 @@ program
           console.log("  LUNCHMONEY_API_KEY - for Lunch Money");
           console.log("  STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_ACCESS_TOKEN - for Strava");
           console.log("  HEVY_CSV_PATH - for Hevy (path to workouts.csv file)");
+          console.log(
+            "  GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_ACCESS_TOKEN - for Google Calendar",
+          );
           process.exit(1);
         }
 
@@ -83,16 +88,21 @@ program
   .command("auth <integration>")
   .description("Authenticate with a service (for OAuth-based integrations)")
   .action(async (integrationName: string) => {
-    if (integrationName === "strava") {
-      try {
-        await stravaIntegration.authenticate();
-      } catch (error) {
-        console.error("Authentication failed:", error instanceof Error ? error.message : error);
-        process.exit(1);
+    try {
+      switch (integrationName) {
+        case "strava":
+          await stravaIntegration.authenticate();
+          break;
+        case "google-calendar":
+          await googleCalendarIntegration.authenticate();
+          break;
+        default:
+          console.error(`Integration "${integrationName}" does not support OAuth authentication.`);
+          console.error("For API key-based integrations, set the environment variable directly.");
+          process.exit(1);
       }
-    } else {
-      console.error(`Integration "${integrationName}" does not support OAuth authentication.`);
-      console.error("For API key-based integrations, set the environment variable directly.");
+    } catch (error) {
+      console.error("Authentication failed:", error instanceof Error ? error.message : error);
       process.exit(1);
     }
   });
@@ -132,7 +142,7 @@ program
                   const str = String(val);
                   return str.includes(",") ? `"${str}"` : str;
                 })
-                .join(",")
+                .join(","),
             );
           }
           break;
@@ -179,7 +189,7 @@ program
           const success = status.last_sync_success ? "✓" : "✗";
           const time = status.last_sync_at || "Never";
           console.log(
-            `${name.padEnd(20)} ${success} ${time.padEnd(25)} ${status.records_synced} records`
+            `${name.padEnd(20)} ${success} ${time.padEnd(25)} ${status.records_synced} records`,
           );
           if (status.error_message) {
             console.log(`${"".padEnd(22)}Error: ${status.error_message}`);
@@ -223,4 +233,3 @@ program
   });
 
 program.parse();
-

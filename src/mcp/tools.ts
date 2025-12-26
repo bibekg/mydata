@@ -28,6 +28,7 @@ export const queryDatabaseTool: ToolDefinition = {
 This database contains data synced from various services:
 - Lunch Money: transactions, categories, assets, recurring items (tables: lm_transactions, lm_categories, lm_assets, lm_plaid_accounts, lm_recurring)
 - Strava: activities and athlete profile (tables: strava_activities, strava_athlete)
+- Google Calendar: calendars, events, attendees (tables: gcal_calendars, gcal_events, gcal_attendees)
 
 Use standard SQLite syntax. Results are limited to prevent overwhelming responses.`,
   inputSchema: queryDatabaseSchema,
