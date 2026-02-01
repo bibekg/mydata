@@ -83,3 +83,5 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 
 All data is stored in a local SQLite database at `./data/mydata.db`. This file is gitignored by default.
 
+
+

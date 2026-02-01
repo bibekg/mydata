@@ -188,4 +188,3 @@ export function getTool(name: string): ToolDefinition | undefined {
 export function ensureMigrations(db: SqliteDatabase): void {
   runAllMigrations(db);
 }
-
